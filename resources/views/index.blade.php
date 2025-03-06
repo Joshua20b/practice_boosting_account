@@ -9,10 +9,10 @@
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h5>API Balance: {{ $balance }} {{ $currency }}</h5>
+                    {{-- <h5>API Balance: {{ $balance }} {{ $currency }}</h5> --}}
                 </div>
                 <div class="col-md-6">
-                    <h5>Your Balance: ${{ number_format($userBalance, 2) }}</h5>
+                    {{-- <h5>Your Balance: ${{ number_format($userBalance, 2) }}</h5> --}}
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($orders as $order)
+                    {{-- @forelse($orders as $order)
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->service_id }}</td>
@@ -104,7 +104,7 @@
                     <tr>
                         <td colspan="4" class="text-center">No orders yet</td>
                     </tr>
-                    @endforelse
+                    @endforelse --}}
                 </tbody>
             </table>
         </div>
