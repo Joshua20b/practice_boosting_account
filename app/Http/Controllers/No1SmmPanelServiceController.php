@@ -22,6 +22,12 @@ class No1SmmPanelServiceController extends Controller
         Log::info('API Configuration - URL: ' . $this->api_url . ', Key: ' . $this->api_key);
     }
 
+    /**
+     * Make a POST request to the API with the given data.
+     *
+     * @param array $data
+     * @return string|null
+     */
     private function connect(array $data): ?string
     {
         try {
@@ -43,6 +49,12 @@ class No1SmmPanelServiceController extends Controller
         }
     }
 
+    /**
+     * Add a new order to the API.
+     *
+     * @param array $data
+     * @return object|null
+     */
     public function add_order(array $data): ?object
     {
         $post = array_merge(['key' => $this->api_key, 'action' => 'add'], $data);
@@ -50,7 +62,13 @@ class No1SmmPanelServiceController extends Controller
         return $response ? json_decode($response) : null;
     }
 
-    public function status($orderId): ?object
+    /**
+     * Get the status of an existing order from the API.
+     *
+     * @param int $orderId
+     * @return object|null
+     */
+    public function status(int $orderId): ?object
     {
         $response = $this->connect([
             'key' => $this->api_key,
@@ -60,6 +78,12 @@ class No1SmmPanelServiceController extends Controller
         return $response ? json_decode($response) : null;
     }
 
+    /**
+     * Get the status of multiple existing orders from the API.
+     *
+     * @param int|array $orderIds
+     * @return object|null
+     */
     public function multi_status($orderIds): ?object
     {
         $response = $this->connect([
@@ -70,6 +94,11 @@ class No1SmmPanelServiceController extends Controller
         return $response ? json_decode($response) : null;
     }
 
+    /**
+     * Get a list of services from the API.
+     *
+     * @return array
+     */
     public function services(): array
     {
         $services = Cache::remember('smm_services', 3600, function () {
@@ -120,6 +149,11 @@ class No1SmmPanelServiceController extends Controller
         return is_array($services) ? $services : [];
     }
 
+    /**
+     * Get the current balance from the API.
+     *
+     * @return object|null
+     */
     public function balance(): ?object
     {
         $response = $this->connect([
